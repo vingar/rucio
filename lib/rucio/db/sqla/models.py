@@ -1,33 +1,41 @@
+# Copyright 2015-2018 CERN for the benefit of the ATLAS collaboration.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Authors:
+# - Vincent Garonne <vgaronne@gmail.com>, 2015-2018
+# - Joaquin Bogado <jbogado@linti.unlp.edu.ar>, 2015
+# - Wen Guan <wguan.icedew@gmail.com>, 2015
+# - Martin Barisits <martin.barisits@cern.ch>, 2015-2018
+# - Cedric Serfon <cedric.serfon@cern.ch>, 2016-2018
+# - Mario Lassnig <mario.lassnig@cern.ch>, 2017
+
 '''
-  Copyright European Organization for Nuclear Research (CERN)
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  You may not use this file except in compliance with the License.
-  You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-  Authors:
-  - Vincent Garonne, <vincent.garonne@cern.ch>, 2012-2017
-  - Mario Lassnig, <mario.lassnig@cern.ch>, 2012-2015, 2017
-  - Angelos Molfetas, <angelos.molfetas@cern.ch>, 2012
-  - Ralph Vigne, <ralph.vigne@cern.ch>, 2013
-  - Cedric Serfon, <cedric.serfon@cern.ch>, 2013-2018
-  - Martin Barisits, <martin.barisits@cern.ch>, 2013-2018
-  - Wen Guan, <wen.guan@cern.ch>, 2015
-
-SQLAlchemy models for rucio data
+    SQLAlchemy models for rucio data
 '''
 
 import datetime
 import uuid
 
-from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, Integer, SmallInteger, String as _String, event, UniqueConstraint
+from sqlalchemy import (BigInteger, Boolean, Column, DateTime, Float, Integer,
+                        SmallInteger, String as _String, event, UniqueConstraint)
 from sqlalchemy.engine import Engine
 from sqlalchemy.ext.compiler import compiles
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import object_mapper, relationship, backref
 from sqlalchemy.schema import Index, ForeignKeyConstraint, PrimaryKeyConstraint, CheckConstraint, Table
 from sqlalchemy.sql import Delete
-from sqlalchemy.types import LargeBinary
+from sqlalchemy.types import LargeBinary, JSON
 
 from rucio.common import utils
 from rucio.common.schema import NAME_LENGTH, SCOPE_LENGTH
@@ -1097,7 +1105,7 @@ class Message(BASE, ModelBase):
     __tablename__ = 'messages'
     id = Column(GUID(), default=utils.generate_uuid)
     event_type = Column(String(1024))
-    payload = Column(String(4000))
+    payload = Column(JSON)
     _table_args = (PrimaryKeyConstraint('id', name='MESSAGES_ID_PK'),
                    CheckConstraint('EVENT_TYPE IS NOT NULL', name='MESSAGES_EVENT_TYPE_NN'),
                    CheckConstraint('PAYLOAD IS NOT NULL', name='MESSAGES_PAYLOAD_NN'),)
