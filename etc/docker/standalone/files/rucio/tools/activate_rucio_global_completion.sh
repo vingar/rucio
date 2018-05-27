@@ -9,6 +9,9 @@
 # Authors:
 # - Vincent Garonne, <vincent.garonne@cern.ch>, 2013
 
+
+shopt -s checkwinsize
+
 # Script to enable shell completion on the rucio commands
 
 eval "$(register-python-argcomplete rucio)"

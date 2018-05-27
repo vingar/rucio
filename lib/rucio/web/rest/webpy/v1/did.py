@@ -207,7 +207,6 @@ class Attachments(RucioController):
         except Exception as error:
             print format_exc()
             raise InternalError(error)
-
         raise Created()
 
 

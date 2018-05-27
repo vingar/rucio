@@ -10,7 +10,7 @@
 # - Mario Lassnig, <mario.lassnig@cern.ch>, 2014-2015
 
 # scp root@rucio-daemon-prod-01.cern.ch:/opt/rucio/tools/x509up x509up
-# scp root@rucio-daemon-prod-01.cern.ch:/opt/rucio/etc/ddmusr01.rfc.proxy x509up
-scp root@rucio-daemon-prod-01.cern.ch:/opt/rucio/etc/ddmusr01.rfc.long.proxy /tmp/x509up_u501 
+# scp root@rucio-daemon-prod-02.cern.ch:/opt/rucio/etc/ddmusr01.rfc.proxy x509up
+scp root@rucio-daemon-prod-02.cern.ch:/opt/rucio/tools/ddmusr01.rfc.proxy /tmp/x509up_u$(id -u) 
 chmod 600 x509up
-export X509_USER_PROXY=x509up
+export X509_USER_PROXY=/tmp/x509up_u501
