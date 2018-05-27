@@ -42,6 +42,8 @@ ADD files/pyopenssl.py /usr/lib/python2.7/site-packages/urllib3/contrib/pyopenss
 # To enable bash completion for the rucio clients
 ADD files/rucio/tools/activate_rucio_global_completion.sh /root/.bashrc
 ADD files/rucio-admin /usr/bin/rucio-admin
+ADD files/rule.py /usr/lib/python2.7/site-packages/rucio/core/rule.py
+RUN chmod 644 /usr/lib/python2.7/site-packages/rucio/core/rule.py
 
 WORKDIR /opt/rucio
 

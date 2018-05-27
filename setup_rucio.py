@@ -231,5 +231,6 @@ setup(
         ['rucio-reaper=rucio.clis.daemons.reaper.reaper:main',
          'rucio-dark-reaper=rucio.clis.daemons.reaper.dark:main',
          'rucio-light-reaper=rucio.clis.daemons.reaper.light:main'],
+    'rucio_transfertools': ['FTS=rucio.transfertool.fts3:FTS3Transfertool'],
     },
 )

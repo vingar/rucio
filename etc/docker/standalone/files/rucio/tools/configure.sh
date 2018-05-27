@@ -77,6 +77,7 @@ rucio-admin rse set-attribute --rse  DESY-DISCORDIA --key fts  --value https://f
 
 rucio-admin rse set-attribute --rse  DESY-PROMETHEUS --key reaper  --value 1
 rucio-admin rse set-attribute --rse  NDGF-KERMIT --key reaper  --value 1
+rucio-admin rse set-attribute --rse  NDGF-PIGGY --key reaper  --value 1
 
 # add scopes
 rucio-admin scope add --scope MyScope --account root
